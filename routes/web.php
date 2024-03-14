@@ -20,15 +20,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 
-Route::view('/', 'index', ['articles' => Article::all()]);
-Route::view('/articles/{id}/read', 'index', ['articles' => Article::all()]);
+Route::view('/', 'index', ['articles' => Article::all()])->name('home');
+Route::get('/articles/{id}/read', [ArticleController::class, 'show'])->name('article.read');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::resource('/categories', CategoryController::class);
 Route::resource('/tags', TagController::class);
-Route::resource('/articles', ArticleController::class);
+Route::resource('/articles', ArticleController::class)->middleware('auth');

@@ -28,21 +28,37 @@
 
 <body>
 
-    <div class="container p-5">
-        @forelse ($articles as $article)
-            <div class="card mb-2 p-3 border-0 shadow-sm cursor-pointer">
-                <div class="d-flex justify-content-between">
-                    <img src="{{ $article->image }}" height="100x" width="140px" alt="" class="border me-3">
-                    <div class="d-flex flex-column pl-2">
-                        <div class="card-title">{{ $article->title }}</div>
-                        <p class="text">{{ $article->full_text }}</p>
+    <div class="d-flex justify-content-center container p-5">
+        <div class="col-md-8">
+            <div class="py-3 d-flex justify-content-between">
+                <h3>S Blog</h3>
+                @auth
+                    <div>
+                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                        {{ Auth::user()->name }}
                     </div>
-
-                </div>
+                @endauth
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-primary rounded-3">Login</a>
+                @endguest
             </div>
-        @empty
-            <p>No articles</p>
-        @endforelse
+            @forelse ($articles as $article)
+                <a href="{{ route('article.read', $article->id) }}" class="text-decoration-none">
+                    <div class="card mb-2 p-3 border-0 shadow-sm cursor-pointer">
+                        <div class="d-flex justify-content-between">
+                            <img src="{{ $article->image }}" height="100x" width="140px" alt=""
+                                class="border me-3">
+                            <div class="d-flex flex-column pl-2">
+                                <div class="card-title">{{ $article->title }}</div>
+                                <p class="text">{{ $article->full_text }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @empty
+                <p>No articles</p>
+            @endforelse
+        </div>
     </div>
 
 </body>

@@ -59,9 +59,6 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-
-
-
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -225,9 +222,19 @@
         <footer class="main-footer">
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
             All rights reserved.
+            <a class="float-right d-none d-sm-inline-block btn btn-dark btn-sm" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.2.0
             </div>
+
         </footer>
 
         <!-- Control Sidebar -->

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row mt-2">
-        <div class="col-lg-3 col-6">
+        {{-- <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
@@ -61,6 +61,6 @@
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <!-- ./col -->
+        <!-- ./col --> --}}
     </div>
 @endsection
